@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="promise.css">
+</head>
+<body>
+    <div id="wrapper">
+        
+
+    </div>
+    <script>
+    
+
+    fetch("https://dummyjson.com/products")
+    .then((allow)=>{
+        console.log(allow)
+        return allow.json()})
+    .then((result)=>{
+        console.log(result)
+        showdetails(result)
+    })
+    .catch((error)=>console.log("Error:"+":"+error))
+
+
+    function showdetails(result){
+        
+        for(let i=0;i<result.products.length;i++){
+           let divs=document.createElement("div")
+           let image=document.createElement("img")
+           let para=document.createElement("p")
+           let head=document.createElement("h1")
+           let anchor=document.createElement("a")
+           image.src=result.products[i].thumbnail
+           head.innerHTML=result.products[i].brand
+           para.innerHTML=result.products[i].description
+           anchor.innerHTML=result.products[i].price
+           divs.append(image)
+           divs.append(head)
+           divs.append(para)
+          
+           divs.append(anchor)
+           document.querySelector("#wrapper").append(divs)
+           
+           
+           
+           
+        }
+            
+    }
+
+       
+    </script>
+</body>
+</html>
